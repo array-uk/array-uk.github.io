@@ -3,63 +3,185 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>My Portfolio</title>
+  <title>V3yRic | Portfolio</title>
+
   <style>
+    /* Vampyer.woff2 ফাইল index.html-এর পাশে যোগ করলে ফন্টটি লোড হবে */
+    @font-face {
+      font-family: "Vampyer";
+      src: url("Vampyer.woff2") format("woff2");
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --bg1: #29345c;
+      --bg2: #090b12;
+      --card: #151925;
+      --accent: #9b76ff;
+      --text: #ffffff;
+      --muted: #bdc5d8;
+      --font: "Vampyer", Georgia, serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: var(--font);
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
       display: grid;
       place-items: center;
-      font-family: Arial, sans-serif;
-      color: white;
-      background: radial-gradient(circle at top, #29345c, #090b12 65%);
+      padding: 24px;
+      color: var(--text);
+      background: radial-gradient(circle at top, var(--bg1), var(--bg2) 70%);
+      transition: background 0.3s;
     }
+
     .card {
-      width: min(420px, 85%);
-      padding: 36px 24px;
+      width: min(440px, 100%);
+      padding: 32px 24px;
       text-align: center;
-      background: #151925cc;
+      background: var(--card);
       border: 1px solid #ffffff24;
       border-radius: 24px;
       box-shadow: 0 20px 60px #0008;
     }
+
     .avatar {
       width: 100px;
       height: 100px;
-      margin: auto;
+      margin: 0 auto;
       display: grid;
       place-items: center;
       border-radius: 50%;
-      background: linear-gradient(135deg, #76e4f7, #9b76ff);
+      background: linear-gradient(135deg, #76e4f7, var(--accent));
       font-size: 38px;
-      font-weight: bold;
     }
-    h1 { margin-bottom: 8px; }
-    p { color: #bdc5d8; }
-    .links a {
-      display: inline-block;
-      margin: 6px;
-      padding: 10px 14px;
-      color: white;
+
+    h1 {
+      margin: 18px 0 8px;
+      font-size: 36px;
+    }
+
+    .bio {
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .links a,
+    .discord,
+    select {
+      padding: 11px 15px;
+      color: var(--text);
+      font-size: 16px;
       text-decoration: none;
       background: #ffffff18;
-      border: 1px solid #ffffff20;
+      border: 1px solid #ffffff28;
       border-radius: 12px;
+      cursor: pointer;
     }
-    .links a:hover { background: #7868e8; }
+
+    .links a:hover,
+    .discord:hover {
+      background: var(--accent);
+    }
+
+    .settings {
+      margin-top: 26px;
+    }
+
+    .settings label {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--muted);
+    }
+
+    select {
+      background-color: #25293a;
+    }
+
+    option {
+      color: #111;
+      background: white;
+    }
   </style>
 </head>
+
 <body>
   <main class="card">
-    <div class="avatar">A</div>
-    <h1>Your Name</h1>
-    <p>Hi! Welcome to my profile.</p>
+    <div class="avatar">V</div>
+
+    <h1>V3yRic</h1>
+    <p class="bio">Hi! Welcome to my profile.</p>
+
     <div class="links">
-      <a href="https://youtube.com/@YOUR_CHANNEL">▶ YouTube</a>
-      <a href="https://tiktok.com/@YOUR_USERNAME">♪ TikTok</a>
-      <a href="https://instagram.com/YOUR_USERNAME">◎ Instagram</a>
-      <button onclick="alert('Discord ID: YOUR_DISCORD_ID')">Discord</button>
+      <a href="https://instagram.com/gota_ishan009"
+         target="_blank" rel="noopener noreferrer">
+        ◎ Instagram
+      </a>
+
+      <a href="https://www.tiktok.com/@veyric.l0l"
+         target="_blank" rel="noopener noreferrer">
+        ♪ TikTok
+      </a>
+
+      <button class="discord" onclick="alert('Discord ID ekhane add koro')">
+        Discord
+      </button>
+    </div>
+
+    <div class="settings">
+      <label for="theme">Choose a theme</label>
+      <select id="theme">
+        <option value="purple">Purple</option>
+        <option value="blue">Blue</option>
+        <option value="pink">Pink</option>
+        <option value="green">Green</option>
+      </select>
     </div>
   </main>
+
+  <script>
+    const themes = {
+      purple: ["#29345c", "#090b12", "#151925", "#9b76ff"],
+      blue:   ["#123b5d", "#07111b", "#101d2a", "#42bdf5"],
+      pink:   ["#5b2448", "#140b14", "#241321", "#ff70b7"],
+      green:  ["#174a3b", "#07120e", "#102019", "#55d6a5"]
+    };
+
+    const themePicker = document.getElementById("theme");
+
+    function applyTheme(name) {
+      const [bg1, bg2, card, accent] = themes[name];
+      const root = document.documentElement;
+
+      root.style.setProperty("--bg1", bg1);
+      root.style.setProperty("--bg2", bg2);
+      root.style.setProperty("--card", card);
+      root.style.setProperty("--accent", accent);
+
+      localStorage.setItem("profile-theme", name);
+    }
+
+    themePicker.addEventListener("change", () => {
+      applyTheme(themePicker.value);
+    });
+
+    const savedTheme = localStorage.getItem("profile-theme") || "purple";
+    themePicker.value = savedTheme;
+    applyTheme(savedTheme);
+  </script>
 </body>
 </html>
