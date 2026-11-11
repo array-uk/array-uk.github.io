@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: Arial, sans-serif;
+      color: white;
+      background: radial-gradient(circle at top, #29345c, #090b12 65%);
+    }
+    .card {
+      width: min(420px, 85%);
+      padding: 36px 24px;
+      text-align: center;
+      background: #151925cc;
+      border: 1px solid #ffffff24;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px #0008;
+    }
+    .avatar {
+      width: 100px;
+      height: 100px;
+      margin: auto;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #76e4f7, #9b76ff);
+      font-size: 38px;
+      font-weight: bold;
+    }
+    h1 { margin-bottom: 8px; }
+    p { color: #bdc5d8; }
+    .links a {
+      display: inline-block;
+      margin: 6px;
+      padding: 10px 14px;
+      color: white;
+      text-decoration: none;
+      background: #ffffff18;
+      border: 1px solid #ffffff20;
+      border-radius: 12px;
+    }
+    .links a:hover { background: #7868e8; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="avatar">A</div>
+    <h1>Your Name</h1>
+    <p>Hi! Welcome to my profile.</p>
+    <div class="links">
+      <a href="https://youtube.com/@YOUR_CHANNEL">▶ YouTube</a>
+      <a href="https://tiktok.com/@YOUR_USERNAME">♪ TikTok</a>
+      <a href="https://instagram.com/YOUR_USERNAME">◎ Instagram</a>
+      <button onclick="alert('Discord ID: YOUR_DISCORD_ID')">Discord</button>
+    </div>
+  </main>
+</body>
+</html>
